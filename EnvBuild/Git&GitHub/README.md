@@ -57,14 +57,16 @@ Git Bash や コマンドプロンプト、PowerShell などでメッセージ�
 
 1. 新しいリポジトリ作成時のブランチ名<br>
 「git init」コマンドでリポジトリを作成したとき、最初に作成されるブランチ名を指定します。<br>
-![Gitmasterbranch](../../images/Gitmasterbranch.PNG)
+![Gitmainbranch](../../images/Gitmainbranch.PNG)
 
 ### 選択肢とその説明
 >  * Let Git decide<br>
 >  デフォルトのブランチ名を「master」にします。
 >  * Overrride the default branch name for new repositories<br>
 >  デフォルトのブランチ名を、指定したブランチ名に変更します。<br>
->  (新人研修ではデフォルトのmasterで説明します。)
+>  (新人研修ではmainで説明します。)<br>
+>    * Q.なぜmainにするのか？<br>
+>      A.同じくしようするGithubではmainがデフォルトで使われているから。
 
 8. 環境変数パスの設定<br>
 Windows の PATH環境変数に追加するフォルダを選択します。<br>
@@ -146,7 +148,6 @@ git pull でマージを行う際の挙動を選択します。<br>
 14. 資格情報マネージャー(Credential Manager)の選択<br>
 インストールすると、httpsでリモートリポジトリに接続する際に毎回認証する手間が省けます。<br>
 (デフォルトの状態でOK)<br>
-
 ![GitManager](../../images/GitNormalOption.PNG)
 
 
