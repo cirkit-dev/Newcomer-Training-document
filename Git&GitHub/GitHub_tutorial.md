@@ -1,14 +1,21 @@
 # GitのリポジトリをGitHubにあげよう
 
+1. [SSH keyを作ろう](#ssh-keyを作ろう)
+
 1. [GitHubでリポジトリを作成しよう](#GitHubでリポジトリを作成しよう)
 
 1. [GitのリポジトリをGitHubにあげよう](#gitのリポジトリをgithubにあげよう)
 
 <br>
 
+## SSH keyを作ろう
+
+### SSH keyってなに？
+
+
 ## GitHubでリポジトリを作成しよう
 
-* New repositoryをクリック
+* New repositoryをクリック<br>
 ![NewRepositori](../images/GitHub_NewRepositori.PNG)
 
 * Repository name(リポジトリの名前)とDescription(リポジトリの説明)を記入しよう<br>
@@ -42,4 +49,5 @@ GitのリポジトリをGitHubのリポジトリにプッシュしよう
 ```
 git push -u origin master
 ```
-(git pushのオプション -u とは、ローカルリポジトリの現在のブランチの上流をorigin master に規定することを意味している。<b>すなわち、次からは git push だけで上記のコマンドと同じことを実施できる。さらに、git pull だけでも git pull origin master と同じ意味になる。<b>)
+(git pushのオプション -u とは、ローカルリポジトリの現在のブランチの上流をorigin master に規定することを意味している。<br>
+<b>すなわち、次からは git push だけで上記のコマンドと同じことを実施できる。さらに、git pull だけでも git pull origin master と同じ意味になる。<b>)
