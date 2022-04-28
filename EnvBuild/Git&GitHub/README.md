@@ -55,7 +55,7 @@ Git Bash や コマンドプロンプト、PowerShell などでメッセージ�
 ![GitEditor](../../images/GitEditor.PNG)
 <br>
 
-1. 新しいリポジトリ作成時のブランチ名<br>
+7. 新しいリポジトリ作成時のブランチ名<br>
 「git init」コマンドでリポジトリを作成したとき、最初に作成されるブランチ名を指定します。<br>
 ![Gitmainbranch](../../images/Gitmainbranch.PNG)
 
