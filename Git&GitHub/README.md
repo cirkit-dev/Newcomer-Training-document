@@ -11,6 +11,8 @@ GitとGitHubについて学習します。
 
 1. [GitのリポジトリをGitHubにあげよう](GitHub_tutorial.md)
 
+1. [GitHubPagesに自己紹介サイトをデプロイしよう](GitHabPages.md)
+
 <br>
 
 Gitのオススメ学習教材
