@@ -20,47 +20,104 @@
 
 ## Ubuntuを導入するための準備をしよう(WSLの導入)
 * WindowsでLinuxSubSystemを有効化しよう
+1. 検索欄に「Windows機能の有効化または無効化」を入力
+1. Linux 用 Windows サブシステム,Windows ハイパーバイザー プラットフォーム,仮想マシン プラットフォームにチェック
 
 * 開発者モードの有効化をしよう
+1. スタートボタンから設定をクリック
+1. 設定ページでプライバシーとセキュリティを選択
+1. 開発者モードをクリックして有効化する
 
 * Windows Terminalを導入しよう(Windows11にはデフォルトで導入されているらしいので確認してみてなかったら入れてね！)<br>
 [Windows Terminalのインストールはここから！](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=ja-jp&gl=JP)
 
-* WSLをアップデートしよう<br>
-[Linux カーネル更新プログラム パッケージをダウンロード](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
-
 ## Ubuntuの導入とアップデート
-* [Ubuntuのインストールはここから](https://apps.microsoft.com/store/detail/ubuntu-on-windows/9NBLGGH4MSV6?hl=ja-jp&gl=JP)
 
-## ここまでのことを1発で行う神コマンド
-(注意：前提として、WSL2を使うにはCPUの仮想化支援機能が必要です。PCによっては仮想化支援機能がUEFI/BIOSの初期状態でオフになっていることもあるので、オンになっていることを確認してください。)<br>
-
-1. コマンドプロンプトやPowerShellを管理者権限で起動
-
+1. コマンドプロンプトまたはPowerShellを管理者権限で起動
 1. 以下のコマンドでUbuntu,仮想マシンプラットフォーム,WSL,WSL用Linuxカーネル,GUIアプリサポート,Linuxディストリビューションをインストール
 ```
 wsl --install -d Ubuntu
 ```
+
+### 手動でUbuntuのインストールとWSLのアップデートをする方法(上の方法で上手くインストールできなかった場合)
+
+* [Ubuntuのインストールはここから](https://apps.microsoft.com/store/detail/ubuntu-on-windows/9NBLGGH4MSV6?hl=ja-jp&gl=JP)
+
+* WSLをアップデートしよう<br>
+[Linux カーネル更新プログラム パッケージをダウンロード](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
 
 
 * Ubuntuの初期設定
   * ユーザー名入力（小文字と数字のみ使えます）
   * パスワード入力（見えないのは仕様なので注意）
 
-* データを引っ張ってくるサーバーを変える(通信速度を早くしたい方のみ(任意))
-```
-sudo sed -i.bak -e "s%http://us.archive.ubuntu.com/ubuntu/%http://ftp.jaist.ac.jp/pub/Linux/ubuntu/%g" /etc/apt/sources.list
-```
+* ワークスペースディレクトリの作成
+  * ワークスペースの作成
+  ```
+  mkdir workspace
+  cd workspace
+  ```
 
-* ホームディレクトリの設定
-  * Ubuntuを起動してpwdと入力する
-  * 
-
+* Ubuntuのバージョンを最新にする
+    ```
+    sudo apt update && sudo apt upgrade -y
+    ```
 ## Ubuntuに各種ライブラリの導入
+```
+sudo apt install make
+sudo apt install gcc
+sudo apt install -y libssl-dev libreadline-dev zlib1g-dev
+```
 
 ## Node.jsの導入
-
+```
+sudo apt install npm
+```
 ## rbenvの導入とRubyの導入
+
+* rbenvのインストール
+  ```
+  git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+  ```
+
+* rbenvのPATHを通す
+  * export PATH="$HOME/.rbenv/bin:$PATH"を~/.bashrcに追記する
+    ```
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+    ```
+  * (.bashrcファイルが無かった場合)
+    ```
+    touch ~/.bashrc
+    ```
+  * rbenvの設定を行う
+    ```
+    echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+    ```
+  * 確認方法
+    ```
+    使用したいエディタ名(code,vim,catなど) ~/.bashrc
+    ```
+  * 変更の読み込み
+    ```
+    source ~/.bashrc
+    ```
+
+* ruby-buildのインストール
+```
+git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+```
+
+* Rubyのインストール
+  * 安定バージョンの確認
+    ```
+    rbenv install --list
+    ```
+  * 2系と3系の安定バージョンをインストール(2022年6月では2.7.6と3.1.2)
+    ```
+    rbenv install バージョン
+    rbenv rehash
+    ```
+  
 
 ## Railsの導入
 
