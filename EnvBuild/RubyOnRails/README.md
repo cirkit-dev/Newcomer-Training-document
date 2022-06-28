@@ -14,6 +14,7 @@
 
 1. [MySQLの導入](#mysqlの導入)
 
+
 <br>
 
 ## Ubuntuを導入するための準備をしよう(WSLの導入)
@@ -68,9 +69,16 @@ sudo apt install -y libssl-dev libreadline-dev zlib1g-dev
 ```
 
 ## Node.jsの導入
-```
-sudo apt install npm
-```
+* npmのインストール
+  ```
+  sudo apt install npm
+  ```
+* npmのバージョン確認
+  ```
+  npm -v
+  ```
+
+
 ## rbenvの導入＆Rubyの導入＆Railsの導入
 
 * rbenvのインストール
@@ -101,9 +109,9 @@ sudo apt install npm
     ```
 
 * ruby-buildのインストール
-```
-git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-```
+  ```
+  git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+  ```
 
 * RubyのインストールとRailsの導入
   * 安定バージョンの確認
@@ -146,4 +154,48 @@ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-bu
   ```
 * MySQLのユーザー作成
   ```
-  
+  sudo mysql -u root
+  ```
+  以下MySQLを操作(mysql>)
+  ```
+  SHOW GLOBAL VARIABLES LIKE 'validate%';
+  CREATE USER '設定するユーザー名'@'localhost' IDENTIFIED BY '設定するパスワード'; 
+  GRANT ALL ON *.* TO '設定したユーザー名'@'localhost';
+  ```
+
+* テストアプリを作成
+  ```
+  cd ruby-2.7.6
+  rails new test_app -d mysql
+  cd test_app
+  ```
+
+* database.ymlファイルにDBのパスワードを書き込む（実際の開発ではdirenvファイルに書き込む）<br>
+  usernameに作成したユーザー名<br>passwordに設定したパスワード
+  ```
+  code config/database.yml
+  ```
+  database.ymlファイルの中身(一部)
+  ```
+  default: &default
+    adapter: mysql2
+    encoding: utf8mb4
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    username: (MySQLで作成したユーザー名を入力)
+    password: (MySQLで作成したパスワードを入力)
+  ```
+
+* MySQLでデータベース作成とマイグレーション
+  ```
+  rails db:create
+  rails db:migrate
+  ```
+  (もしエラーが出たら、Ubuntuの再起動をしてみてください)
+
+* Railsサーバーを起動
+  ```
+  rails s
+  ```
+
+(余裕のある方は、同様の手順でruby-3.1.2のディレクトリでもテストアプリを作ってみよう！)
+
