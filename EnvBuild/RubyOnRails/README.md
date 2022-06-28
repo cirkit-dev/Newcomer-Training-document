@@ -10,7 +10,7 @@
 
 1. [Node.jsの導入](#nodejsの導入)
 
-1. [rbenvの導入＆Rubyの導入＆Railsの導入](#rbenvの導入＆Rubyの導入＆Railsの導入)
+1. [rbenvの導入&Rubyの導入&Railsの導入](#rbenvの導入rubyの導入railsの導入)
 
 1. [MySQLの導入](#mysqlの導入)
 
@@ -79,7 +79,7 @@ sudo apt install -y libssl-dev libreadline-dev zlib1g-dev
   ```
 
 
-## rbenvの導入＆Rubyの導入＆Railsの導入
+## rbenvの導入&Rubyの導入&Railsの導入
 
 * rbenvのインストール
   ```
