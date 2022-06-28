@@ -10,9 +10,7 @@
 
 1. [Node.jsの導入](#nodejsの導入)
 
-1. [rbenvの導入とRubyの導入](#rbenvの導入とrubyの導入)
-
-1. [Railsの導入](#railsの導入)
+1. [rbenvの導入＆Rubyの導入＆Railsの導入](#rbenvの導入＆rubyの導入＆railsの導入)
 
 1. [MySQLの導入](#mysqlの導入)
 
@@ -73,7 +71,7 @@ sudo apt install -y libssl-dev libreadline-dev zlib1g-dev
 ```
 sudo apt install npm
 ```
-## rbenvの導入とRubyの導入
+## rbenvの導入＆Rubyの導入＆Railsの導入
 
 * rbenvのインストール
   ```
@@ -107,7 +105,7 @@ sudo apt install npm
 git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 ```
 
-* Rubyのインストール
+* RubyのインストールとRailsの導入
   * 安定バージョンの確認
     ```
     rbenv install --list
@@ -117,8 +115,23 @@ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-bu
     rbenv install バージョン
     rbenv rehash
     ```
-  
-
-## Railsの導入
+  * Ruby2系用ディレクトリとRuby3系用ディレクトリを作成(2022年6月では2.7.6と3.1.2)
+    ```
+    mkdir ruby-2.7.6
+    mkdir ruby-3.1.2
+    ```
+  * Ruby2系＆Rails5系とRuby3系＆Rails7系の環境を反映(2022年6月ではRuby2.7.6にRails5.2.8,Ruby3.1.2にRails7.0.3)
+    ```
+    cd ruby-2.7.6
+    rbenv local 2.7.6
+    ruby -v （確認）
+    gem install rails -v 5.2.8
+    cd ..
+    cd ruby-3.1.2
+    rbenv local 3.1.2
+    ruby -v （確認）
+    gem install rails -v 5.2.8
+    cd ..
+    ```
 
 ## MySQLの導入
