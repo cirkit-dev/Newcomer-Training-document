@@ -10,7 +10,7 @@
 
 1. [Node.jsの導入](#nodejsの導入)
 
-1. [rbenvの導入＆Rubyの導入＆Railsの導入](#rbenvの導入＆rubyの導入＆railsの導入)
+1. [rbenvの導入＆Rubyの導入＆Railsの導入](#rbenvの導入＆Rubyの導入＆Railsの導入)
 
 1. [MySQLの導入](#mysqlの導入)
 
