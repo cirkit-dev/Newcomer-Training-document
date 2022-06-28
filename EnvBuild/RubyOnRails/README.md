@@ -112,7 +112,8 @@ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-bu
     ```
   * 2系と3系の安定バージョンをインストール(2022年6月では2.7.6と3.1.2)
     ```
-    rbenv install バージョン
+    rbenv install 2.7.6
+    rbenv install 3.1.2
     rbenv rehash
     ```
   * Ruby2系用ディレクトリとRuby3系用ディレクトリを作成(2022年6月では2.7.6と3.1.2)
@@ -130,8 +131,19 @@ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-bu
     cd ruby-3.1.2
     rbenv local 3.1.2
     ruby -v （確認）
-    gem install rails -v 5.2.8
+    gem install rails -v 7.0.3
     cd ..
     ```
 
 ## MySQLの導入
+* MySQLとそれに関連するパッケージのインストール
+  ```
+  sudo apt install mysql-server mysql-client libmysqlclient-dev ruby-dev
+  ```
+* MySQLの起動
+  ```
+  sudo service mysql start
+  ```
+* MySQLのユーザー作成
+  ```
+  
