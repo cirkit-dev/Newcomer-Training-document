@@ -14,7 +14,7 @@
 
 1. [MySQLの導入](#mysqlの導入)
 
-1. [direnvの導入](#)
+1. [direnvの導入](#direnvの導入)
 
 
 <br>
