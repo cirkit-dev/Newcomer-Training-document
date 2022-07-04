@@ -14,6 +14,8 @@
 
 1. [MySQLの導入](#mysqlの導入)
 
+1. [direnvの導入](#)
+
 
 <br>
 
@@ -171,12 +173,12 @@ sudo apt install -y libssl-dev libreadline-dev zlib1g-dev
   cd test_app
   ```
 
-* database.ymlファイルにDBのパスワードを書き込む（実際の開発ではdirenvファイルに書き込む）<br>
+* database.ymlファイルにDBのユーザーとパスワードを書き込む（実際の開発では.envrcファイルに書き込む）<br>
   usernameに作成したユーザー名<br>passwordに設定したパスワード
   ```
   code config/database.yml
   ```
-  database.ymlファイルの中身(一部)
+  ⇩database.ymlファイルの中身(一部)
   ```
   default: &default
     adapter: mysql2
@@ -200,3 +202,73 @@ sudo apt install -y libssl-dev libreadline-dev zlib1g-dev
 
 (余裕のある方は、同様の手順でruby-3.1.2のディレクトリでもテストアプリを作ってみよう！)
 
+## direnvの導入
+実際の開発でMySQLのユーザー名やパスワードを直書きしているとセキュリティ面に脆弱性ができてしまうので、別の公開しないファイルに書き込んで、変数を使って呼び出せるようにする。
+
+* direnvのインストール
+  ```
+  sudo apt install -y direnv
+  ```
+* シェルへのフック設定
+  ```
+  cd
+  echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
+  source ~/.bashrc
+  ```
+
+* .envrcファイルにMySQLのユーザー名とパスワードを書く<br>
+  * アプリのディレクトリに飛ぶ
+    ```
+    cd workspace/ruby-2.7.6/test_app
+    ```
+  * .envrcファイルを作る
+    ```
+    touch .envrc
+    ```
+  * (もしdirenv: errorがでたら)
+    ```
+    direnv allow
+    ```
+  * .envrcファイルをVScodeで開く
+    ```
+    code  .envrc
+    ```
+  * .envrcファイルに以下のことを書き込む
+    ```
+    export DEV_USER=(MySQLで作成したユーザー名入力)
+    export DEV_PASSWORD=(MySQLで作成したパスワドを入力)
+    ```
+  * envrcファイルを反映する
+    ```
+    direnv allow
+    ```
+  * .gitignoreファイルに.envrcを追加する
+    ```
+    code .gitignore
+    ```
+    gitignoreファイルが開かれたら1番下の行を改行して
+    ```
+    .envrc
+    ````
+    と書き込む
+
+* アプリのdatabase.ymlファイルの情報を変更
+  ```
+  code config/database.yml
+  ```
+  ⇩database.ymlファイルの中身(一部)
+  ```
+  default: &default
+    adapter: mysql2
+    encoding: utf8mb4
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    username: <%= ENV['DEV_USER'] %>
+    password: <%= ENV['DEV_PASSWORD'] %>
+  ```
+
+* test_appを起動して確認
+  ```
+  rails s
+  ```
+
+errorが出なければOK！
