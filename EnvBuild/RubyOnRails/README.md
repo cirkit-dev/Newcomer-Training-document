@@ -161,6 +161,7 @@ sudo apt install -y libssl-dev libreadline-dev zlib1g-dev
   SHOW GLOBAL VARIABLES LIKE 'validate%';
   CREATE USER '設定するユーザー名'@'localhost' IDENTIFIED BY '設定するパスワード'; 
   GRANT ALL ON *.* TO '設定したユーザー名'@'localhost';
+  quit;
   ```
 
 * テストアプリを作成
