@@ -184,8 +184,8 @@ sudo apt install -y libssl-dev libreadline-dev zlib1g-dev
     adapter: mysql2
     encoding: utf8mb4
     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-    username: (MySQLで作成したユーザー名を入力)
-    password: (MySQLで作成したパスワードを入力)
+    username: MySQLで作成したユーザー名を入力
+    password: MySQLで作成したパスワードを入力
   ```
 
 * MySQLでデータベース作成とマイグレーション
@@ -205,17 +205,26 @@ sudo apt install -y libssl-dev libreadline-dev zlib1g-dev
 ## envの導入
 実際の開発でMySQLのユーザー名やパスワードを直書きしているとセキュリティ面に脆弱性ができてしまうので、別の公開しないファイルに書き込んで、変数を使って呼び出せるようにする。
 
-* dotenv-railsのインストール
+* アプリのディレクトリに飛ぶ
   ```
-  gem 'dotenv-rails'
-  bundle install
+  cd workspace/ruby-2.7.6/test_app
   ```
 
+* dotenv-railsのインストール
+  * gemファイルを開く
+    ```
+    code Gemfile
+    ```
+  * Gemfileの一番下の行を改行して、以下のコマンドを書き込む
+    ```
+    gem 'dotenv-rails'
+    ```
+  * Gemに反映させる
+    ```
+    bundle install
+    ```
+
 * .envファイルにMySQLのユーザー名とパスワードを書く<br>
-  * アプリのディレクトリに飛ぶ
-    ```
-    cd workspace/ruby-2.7.6/test_app
-    ```
   * .envファイルを作る
     ```
     touch .env
@@ -226,8 +235,8 @@ sudo apt install -y libssl-dev libreadline-dev zlib1g-dev
     ```
   * .envファイルに以下のことを書き込む
     ```
-    DATABASE_USER=(MySQLで作成したユーザー名入力)
-    DATABASE_PASS=(MySQLで作成したパスワドを入力)
+    DATABASE_USER=MySQLで作成したユーザー名入力
+    DATABASE_PASS=MySQLで作成したパスワドを入力
     ```
   * .gitignoreファイルに.envを追加する
     ```
@@ -249,8 +258,8 @@ sudo apt install -y libssl-dev libreadline-dev zlib1g-dev
     adapter: mysql2
     encoding: utf8mb4
     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-    username: <%= ENV['DATABASE_USER'] %>
-    password: <%= ENV['DATABASE_PASS'] %>
+    username: <%= ENV['DATABASE_USER'] %> ←これに書き換える
+    password: <%= ENV['DATABASE_PASS'] %> ←これに書き換える
   ```
 
 * test_appを起動して確認
